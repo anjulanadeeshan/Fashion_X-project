@@ -1,6 +1,8 @@
 import { createContext, useEffect, useState } from "react";
-import { products } from "../assets/frontend_assets/assets";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { getCurrentUser, saveAuthData, clearAuthData } from "../services/userService";
+import api from "../config/api";
 
 export const ShopContext = createContext();
 
@@ -10,6 +12,55 @@ const ShopContextProvider = (props) => {
   const [search, setSearch] = useState("");
   const [showSearch, setShowSearch] = useState(false);
   const [cartItems, setCartItems] = useState({});
+  const [products, setProducts] = useState([]);
+  const [user, setUser] = useState(null);
+  const [token, setToken] = useState(null);
+  const navigate = useNavigate();
+
+  // Load user from localStorage on mount
+  useEffect(() => {
+    const storedToken = localStorage.getItem('token');
+    const storedUser = getCurrentUser();
+    
+    if (storedToken && storedUser) {
+      setToken(storedToken);
+      setUser(storedUser);
+    }
+    
+    // Fetch products from API
+    fetchProducts();
+  }, []);
+
+  // Fetch products from database
+  const fetchProducts = async () => {
+    try {
+      const response = await api.get('/api/product/list');
+      if (response.data.success) {
+        setProducts(response.data.products);
+      }
+    } catch (error) {
+      console.error('Error fetching products:', error);
+      toast.error('Failed to load products');
+    }
+  };
+
+  // Login function
+  const login = (token, userData) => {
+    saveAuthData(token, userData);
+    setToken(token);
+    setUser(userData);
+    toast.success('Login successful!');
+  };
+
+  // Logout function
+  const logout = () => {
+    clearAuthData();
+    setToken(null);
+    setUser(null);
+    setCartItems({});
+    toast.info('Logged out successfully');
+    navigate('/login');
+  };
 
   const addToCart = async (ItemId, size) => {
     if (!size) {
@@ -77,7 +128,13 @@ const ShopContextProvider = (props) => {
     setCartItems,
     addToCart,
     getCartCount,
-    updateQuantity, getCartAmount
+    updateQuantity,
+    getCartAmount,
+    navigate,
+    user,
+    token,
+    login,
+    logout
   };
 
   return (

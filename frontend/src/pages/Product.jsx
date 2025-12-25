@@ -109,13 +109,10 @@ const Product = () => {
         </div>
         <div className="flex flex-col gap-4 border px-6 py-6 text-sm text-gray-500">
           <p>
-            An e-commerce website is an online platform that facilitates the
-            buying and selling of products or services over the internet.
+            Each piece in our collection is carefully selected to meet the highest standards of quality and style. We work directly with manufacturers to ensure authentic materials, superior craftsmanship, and ethical production practices.
           </p>
           <p>
-            E-commerce websites typically display products or services along
-            with detailed descriptions, images, prices, and any available
-            variations (e.g., sizes, colors).
+            Our products feature detailed sizing guides, high-resolution imagery, and comprehensive care instructions. We believe in transparency – what you see is exactly what you'll receive, backed by our satisfaction guarantee.
           </p>
         </div>
       </div>

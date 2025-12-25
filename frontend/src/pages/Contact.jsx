@@ -25,19 +25,19 @@ const Contact = () => {
         <div className='flex flex-col justify-center items-start gap-6'>
             
             {/* Store Information */}
-            <p className='font-semibold text-xl text-gray-600'>Our Store</p>
+            <p className='font-semibold text-xl text-gray-600'>Our Headquarters</p>
             <p className='text-gray-500'>
-              54709 Willms Station <br /> 
-              Suite 350, Washington, USA
+              1247 Fashion Avenue <br /> 
+              SoHo District, New York, NY 10012
             </p>
             <p className='text-gray-500'>
-              Tel: (415) 555-0132 <br /> 
-              Email: admin@forever.com
+              Tel: +1 (646) 892-4100 <br /> 
+              Email: support@forever.com
             </p>
 
             {/* Careers Section */}
-            <p className='font-semibold text-xl text-gray-600'>Careers at Forever</p>
-            <p className='text-gray-500'>Learn more about our teams and job openings.</p>
+            <p className='font-semibold text-xl text-gray-600'>Join Our Team</p>
+            <p className='text-gray-500'>Discover exciting career opportunities and become part of our growing fashion family.</p>
             
             {/* Interactive Button */}
             <button className='border border-black px-8 py-4 text-sm hover:bg-black hover:text-white transition-all duration-500'>

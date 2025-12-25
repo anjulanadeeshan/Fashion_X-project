@@ -19,7 +19,7 @@ const LatestCollection = () => {
       <div className="text-center py-8 text-3xl">
         <Title text1="LATEST" text2="COLLECTION" />
         <p className="w-3/4 m-auto text-xs md:text-base text-gray-600">
-          lorem sample text
+          Explore the newest additions to our collection, featuring the latest
         </p>
       </div>
 

@@ -3,13 +3,107 @@ import { ShopContext } from '../context/ShopContext'
 import CartTotal from '../components/CartTotal'
 import { assets } from '../assets/frontend_assets/assets'
 import { useNavigate } from 'react-router-dom'
+import { placeOrder } from '../services/orderService'
+import { toast } from 'react-toastify'
 
 const PlaceOrder = () => {
 
-  const { navigate } = useContext(ShopContext); // Or use useNavigate directly
-  const navigation = useNavigate(); // Standard hook
+  const { cartItems, products, getCartAmount, navigate } = useContext(ShopContext);
+  const navigation = useNavigate();
   
   const [method, setMethod] = useState('cod');
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    street: '',
+    city: '',
+    state: '',
+    zipcode: '',
+    country: '',
+    phone: ''
+  });
+  const [loading, setLoading] = useState(false);
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handlePlaceOrder = async () => {
+    try {
+      setLoading(true);
+
+      // Validate form
+      if (!formData.firstName || !formData.email || !formData.street || !formData.city) {
+        toast.error('Please fill all required fields');
+        setLoading(false);
+        return;
+      }
+
+      // Get user data
+      const user = JSON.parse(localStorage.getItem('user'));
+      if (!user) {
+        toast.error('Please login to place an order');
+        navigate('/login');
+        return;
+      }
+
+      // Prepare order items from cart
+      const orderItems = [];
+      for (const itemId in cartItems) {
+        for (const size in cartItems[itemId]) {
+          if (cartItems[itemId][size] > 0) {
+            const product = products.find(p => p._id === itemId);
+            if (product) {
+              orderItems.push({
+                productId: product._id,
+                name: product.name,
+                price: product.price,
+                quantity: cartItems[itemId][size],
+                size: size,
+                image: product.image[0]
+              });
+            }
+          }
+        }
+      }
+
+      if (orderItems.length === 0) {
+        toast.error('Your cart is empty');
+        setLoading(false);
+        return;
+      }
+
+      // Prepare order data
+      const orderData = {
+        userId: user.id,
+        items: orderItems,
+        amount: getCartAmount() + 10, // Including delivery fee
+        address: formData,
+        paymentMethod: method.toUpperCase()
+      };
+
+      // Place order
+      const response = await placeOrder(orderData);
+
+      if (response.success) {
+        toast.success('Order placed successfully!');
+        // Clear cart (you may need to implement this in context)
+        navigation('/orders');
+      } else {
+        toast.error(response.message || 'Failed to place order');
+      }
+
+      setLoading(false);
+    } catch (error) {
+      console.error('Place order error:', error);
+      toast.error('Failed to place order. Please try again.');
+      setLoading(false);
+    }
+  };
 
   return (
     <div className='flex flex-col sm:flex-row justify-between gap-4 pt-5 sm:pt-14 min-h-[80vh] border-t'>
@@ -25,23 +119,92 @@ const PlaceOrder = () => {
         </div>
 
         <div className='flex gap-3'>
-            <input className='border border-gray-300 rounded py-1.5 px-3.5 w-full' type="text" placeholder='First name' />
-            <input className='border border-gray-300 rounded py-1.5 px-3.5 w-full' type="text" placeholder='Last name' />
+            <input 
+              className='border border-gray-300 rounded py-1.5 px-3.5 w-full' 
+              type="text" 
+              name="firstName"
+              placeholder='First name'
+              value={formData.firstName}
+              onChange={handleChange}
+              required
+            />
+            <input 
+              className='border border-gray-300 rounded py-1.5 px-3.5 w-full' 
+              type="text" 
+              name="lastName"
+              placeholder='Last name'
+              value={formData.lastName}
+              onChange={handleChange}
+              required
+            />
         </div>
-        <input className='border border-gray-300 rounded py-1.5 px-3.5 w-full' type="email" placeholder='Email address' />
-        <input className='border border-gray-300 rounded py-1.5 px-3.5 w-full' type="text" placeholder='Street' />
+        <input 
+          className='border border-gray-300 rounded py-1.5 px-3.5 w-full' 
+          type="email" 
+          name="email"
+          placeholder='Email address'
+          value={formData.email}
+          onChange={handleChange}
+          required
+        />
+        <input 
+          className='border border-gray-300 rounded py-1.5 px-3.5 w-full' 
+          type="text" 
+          name="street"
+          placeholder='Street'
+          value={formData.street}
+          onChange={handleChange}
+          required
+        />
         
         <div className='flex gap-3'>
-            <input className='border border-gray-300 rounded py-1.5 px-3.5 w-full' type="text" placeholder='City' />
-            <input className='border border-gray-300 rounded py-1.5 px-3.5 w-full' type="text" placeholder='State' />
+            <input 
+              className='border border-gray-300 rounded py-1.5 px-3.5 w-full' 
+              type="text" 
+              name="city"
+              placeholder='City'
+              value={formData.city}
+              onChange={handleChange}
+              required
+            />
+            <input 
+              className='border border-gray-300 rounded py-1.5 px-3.5 w-full' 
+              type="text" 
+              name="state"
+              placeholder='State'
+              value={formData.state}
+              onChange={handleChange}
+            />
         </div>
         
         <div className='flex gap-3'>
-            <input className='border border-gray-300 rounded py-1.5 px-3.5 w-full' type="number" placeholder='Zipcode' />
-            <input className='border border-gray-300 rounded py-1.5 px-3.5 w-full' type="text" placeholder='Country' />
+            <input 
+              className='border border-gray-300 rounded py-1.5 px-3.5 w-full' 
+              type="text" 
+              name="zipcode"
+              placeholder='Zipcode'
+              value={formData.zipcode}
+              onChange={handleChange}
+            />
+            <input 
+              className='border border-gray-300 rounded py-1.5 px-3.5 w-full' 
+              type="text" 
+              name="country"
+              placeholder='Country'
+              value={formData.country}
+              onChange={handleChange}
+            />
         </div>
         
-        <input className='border border-gray-300 rounded py-1.5 px-3.5 w-full' type="number" placeholder='Phone' />
+        <input 
+          className='border border-gray-300 rounded py-1.5 px-3.5 w-full' 
+          type="tel" 
+          name="phone"
+          placeholder='Phone'
+          value={formData.phone}
+          onChange={handleChange}
+          required
+        />
       </div>
 
       {/* ------------- Right Side: Cart Total & Payment ------------- */}
@@ -83,8 +246,12 @@ const PlaceOrder = () => {
             </div>
 
             <div className='w-full text-end mt-8'>
-                <button onClick={()=>navigation('/orders')} className='bg-black text-white px-16 py-3 text-sm active:bg-gray-700'>
-                    PLACE ORDER
+                <button 
+                  onClick={handlePlaceOrder} 
+                  disabled={loading}
+                  className='bg-black text-white px-16 py-3 text-sm active:bg-gray-700 disabled:bg-gray-400 disabled:cursor-not-allowed'
+                >
+                    {loading ? 'PLACING ORDER...' : 'PLACE ORDER'}
                 </button>
             </div>
         </div>

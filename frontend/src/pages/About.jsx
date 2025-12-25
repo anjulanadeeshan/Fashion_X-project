@@ -18,10 +18,10 @@ const About = () => {
       <div className='my-10 flex flex-col md:flex-row gap-16'>
           <img className='w-full md:max-w-[450px]' src={assets.about_img} alt="About Us" />
           <div className='flex flex-col justify-center gap-6 md:w-2/4 text-gray-600'>
-              <p>Forever was born out of a passion for innovation and a desire to revolutionize the way people shop online. Our journey began with a simple idea: to provide a platform where customers can easily discover, explore, and purchase a wide range of products from the comfort of their homes.</p>
-              <p>Since our inception, we've worked tirelessly to curate a diverse selection of high-quality products that cater to every taste and preference. From fashion and beauty to electronics and home essentials, we offer an extensive collection sourced from trusted brands and suppliers.</p>
+              <p>Forever emerged from a vision to redefine online fashion retail by blending style, quality, and accessibility. Founded by a team of fashion enthusiasts and tech innovators, we set out to create more than just a store – we built a destination where modern shoppers discover their unique style effortlessly.</p>
+              <p>What started as a boutique collection has evolved into a comprehensive fashion marketplace. We partner directly with emerging designers and established brands worldwide, ensuring every piece meets our rigorous standards for quality, sustainability, and contemporary design. Our curated selections reflect current trends while honoring timeless classics.</p>
               <b className='text-gray-800'>Our Mission</b>
-              <p>Our mission is to empower customers with choice, convenience, and confidence. We are dedicated to providing a seamless shopping experience that exceeds expectations, from browsing and ordering to delivery and beyond.</p>
+              <p>We exist to inspire confidence through fashion. Our commitment extends beyond transactions – we're building a community where personal style flourishes, sustainable choices matter, and every customer feels valued from first click to final delivery.</p>
           </div>
       </div>
 
@@ -37,17 +37,17 @@ const About = () => {
           
           <div className='border px-10 md:px-16 py-8 sm:py-20 flex flex-col gap-5'>
             <b>Quality Assurance:</b>
-            <p className='text-gray-600'>We meticulously select and vet each product to ensure it meets our stringent quality standards.</p>
+            <p className='text-gray-600'>Every item undergoes rigorous quality checks and material verification. We stand behind each product with confidence, ensuring premium craftsmanship in every piece we offer.</p>
           </div>
 
           <div className='border px-10 md:px-16 py-8 sm:py-20 flex flex-col gap-5'>
             <b>Convenience:</b>
-            <p className='text-gray-600'>With our user-friendly interface and hassle-free ordering process, shopping has never been easier.</p>
+            <p className='text-gray-600'>Experience seamless shopping with smart filters, personalized recommendations, and express checkout. Your perfect outfit is just a few clicks away, delivered right to your doorstep.</p>
           </div>
 
           <div className='border px-10 md:px-16 py-8 sm:py-20 flex flex-col gap-5'>
             <b>Exceptional Customer Service:</b>
-            <p className='text-gray-600'>Our team of dedicated professionals is here to assist you the way, ensuring your satisfaction is our top priority.</p>
+            <p className='text-gray-600'>Our passionate style experts are available around the clock to help with sizing, styling advice, or any concern. Your complete satisfaction drives everything we do.</p>
           </div>
 
       </div>

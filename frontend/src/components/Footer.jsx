@@ -9,7 +9,7 @@ const Footer = () => {
         <div>
           <img src={assets.logo} className="mb-5 w-32" alt="Logo" />
           <p className="w-full md:w-2/3 text-gray-600">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet lacus id elit facilisis placerat.
+            ForeverYou is your ultimate destination for trendy and affordable fashion. Explore our curated collections and elevate your style with us.
           </p>
         </div>
 
