@@ -9,7 +9,7 @@ const AdminNavbar = () => {
     if (window.confirm('Are you sure you want to logout?')) {
       localStorage.removeItem('adminToken');
       localStorage.removeItem('adminUser');
-      navigate('/admin/login');
+      navigate('/');
     }
   };
 

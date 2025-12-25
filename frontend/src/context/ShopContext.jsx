@@ -54,12 +54,27 @@ const ShopContextProvider = (props) => {
 
   // Logout function
   const logout = () => {
+    // Check if admin is logged in
+    const adminToken = localStorage.getItem('adminToken');
+    
     clearAuthData();
+    
+    // Clear admin token if exists
+    if (adminToken) {
+      localStorage.removeItem('adminToken');
+    }
+    
     setToken(null);
     setUser(null);
     setCartItems({});
     toast.info('Logged out successfully');
-    navigate('/login');
+    
+    // Redirect admin to home page, regular users to login
+    if (adminToken) {
+      navigate('/');
+    } else {
+      navigate('/login');
+    }
   };
 
   const addToCart = async (ItemId, size) => {
