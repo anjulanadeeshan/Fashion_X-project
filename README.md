@@ -8,7 +8,7 @@ A modern, full-featured e-commerce platform with customer and admin interfaces, 
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.1.17-38B2AC?logo=tailwind-css)](https://tailwindcss.com/)
 
 ## 🚀 Live Demo
-🔗 [View Live Demo](https://your-deployment-url.vercel.app)  
+🔗 [View Live Demo](https://fashionx-clouthing.netlify.app/)  
 🔧 [Admin Dashboard](https://your-deployment-url.vercel.app/admin)
 
 ## 📋 Table of Contents
