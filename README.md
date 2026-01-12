@@ -1,6 +1,6 @@
-# Forever - Full Stack E-Commerce Application
+# Fashion_X - Full Stack E-Commerce Application
 
-A modern, full-featured e-commerce platform with customer and admin interfaces, built with the MERN stack (MongoDB, Express.js, React.js, Node.js). Features include product management, shopping cart, order processing, user authentication, and a comprehensive admin dashboard.
+A modern, full-featured e-commerce platform with customer and admin interfaces, built with the MERN stack (MongoDB, Express.js, React.js, Node.js). Features include product management, shopping cart, order processing, user authentication, dark mode, and a comprehensive admin dashboard.
 
 [![React](https://img.shields.io/badge/React-19.1.1-blue?logo=react)](https://reactjs.org/)
 [![Node.js](https://img.shields.io/badge/Node.js-v18+-green?logo=node.js)](https://nodejs.org/)
@@ -9,7 +9,33 @@ A modern, full-featured e-commerce platform with customer and admin interfaces, 
 
 ## 🚀 Live Demo
 🔗 [View Live Demo](https://fashionx-clouthing.netlify.app/)  
-🔧 [Admin Dashboard](https://your-deployment-url.vercel.app/admin)
+🔧 [Admin Dashboard](https://fashionx-clouthing.netlify.app/admin)
+
+## 📸 Screenshots
+
+### Customer Interface
+
+#### Home Page
+![Home Page](./frontend/src/assets/admin_assets/Fashion_x%20clouthing-homepage.png)
+*Browse trending collections with Latest Collection and Best Sellers sections*
+
+#### Collection Page
+![Collection Page](./frontend/src/assets/admin_assets/Fashion_x%20clouthing-collection.png)
+*Filter products by category, type, and sort by price with advanced search*
+
+#### About Page
+![About Page](./frontend/src/assets/admin_assets/Fashion_x%20clouthing-aboutus.png)
+*Learn about our mission with Quality Assurance, Convenience, and Customer Service highlights*
+
+### Admin Dashboard
+
+#### Dashboard Overview
+![Admin Dashboard](./frontend/src/assets/admin_assets/Fashion_x%20clouthing-admin_dashboard.png)
+*Monitor total products, orders, users, and revenue at a glance*
+
+#### Product Management
+![Product Management](./frontend/src/assets/admin_assets/Fashion_x%20clouthing-admin_products.png)
+*Add, edit, and manage products with ease*
 
 ## 📋 Table of Contents
 - [Features](#-features)
@@ -212,8 +238,8 @@ E_commerce/
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/yourusername/forever-ecommerce.git
-cd forever-ecommerce
+git clone https://github.com/yourusername/fashion_X-project.git
+cd fashion_X-project
 ```
 
 ### 2. Backend Setup
