@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { getCurrentUser, saveAuthData, clearAuthData } from "../services/userService";
 import api from "../config/api";
+import { products as staticProducts } from "../assets/frontend_assets/assets";
 
 export const ShopContext = createContext();
 
@@ -35,12 +36,16 @@ const ShopContextProvider = (props) => {
   const fetchProducts = async () => {
     try {
       const response = await api.get('/api/product/list');
-      if (response.data.success) {
+      if (response.data.success && response.data.products.length > 0) {
         setProducts(response.data.products);
+      } else {
+        // Use static products as fallback
+        setProducts(staticProducts);
       }
     } catch (error) {
-      console.error('Error fetching products:', error);
-      toast.error('Failed to load products');
+      console.log('Backend not available, using static products');
+      // Use static products when backend is not available
+      setProducts(staticProducts);
     }
   };
 
