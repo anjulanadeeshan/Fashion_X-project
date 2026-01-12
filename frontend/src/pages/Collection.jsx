@@ -77,11 +77,11 @@ const Collection = () => {
   // Re-apply filter whenever category or subCategory changes
   useEffect(() => {
     applyFilter();
-  }, [category, subCategory,search,showSearch]);
+  }, [category, subCategory, search, showSearch, products]);
 
   useEffect(() => {
     sortProduct();
-  },[sortType])
+  }, [sortType])
 
   return (
     <div className="flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t">
@@ -188,7 +188,7 @@ const Collection = () => {
       {/* RIGHT PRODUCT GRID */}
       <div className="flex-1">
         <div className="flex justify-between text-base sm:text-2xl mb-4">
-          <Title text1="ALL" text2="COLLECTION" />
+          <Title text1="ALL" text2=" COLLECTION" />
 
           {/* Sort Dropdown (optional) */}
           <select className="border-2 border-gray-300 text-sm p-2" onChange={(e)=>setSortType(e.target.value)}>

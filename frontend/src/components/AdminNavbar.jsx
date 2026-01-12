@@ -26,7 +26,7 @@ const AdminNavbar = () => {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
             <Link to="/admin/dashboard" className="text-xl font-bold">
-              Forever Admin
+              Fashion_X Admin
             </Link>
             <div className="hidden md:flex ml-10 space-x-4">
               {navItems.map((item) => (

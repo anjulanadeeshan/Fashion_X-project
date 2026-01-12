@@ -3,13 +3,13 @@ import { assets } from '../assets/frontend_assets/assets';
 
 const Footer = () => {
   return (
-    <footer className="my-10 mt-40 text-sm">
+    <footer className=" mt-40 text-sm bg-[#D1D1CD] p-10 rounded-lg">
       <div className="flex flex-col sm:grid sm:grid-cols-[3fr_1fr_1fr] gap-14">
         {/* Logo and description */}
         <div>
-          <img src={assets.logo} className="mb-5 w-32" alt="Logo" />
+          <img src={assets.newlogo} className="mb-5 w-32" alt="Logo" />
           <p className="w-full md:w-2/3 text-gray-600">
-            ForeverYou is your ultimate destination for trendy and affordable fashion. Explore our curated collections and elevate your style with us.
+            Fashion_X is your ultimate destination for trendy and affordable fashion. Explore our curated collections and elevate your style with us.
           </p>
         </div>
 
@@ -29,7 +29,7 @@ const Footer = () => {
           <p className="text-xl font-medium mb-5">GET IN TOUCH</p>
           <ul className="flex flex-col gap-1 text-gray-600">
             <li>033 2297887</li>
-            <li>contact@foreveryou.com</li>
+            <li>contact@fashion_x.com</li>
           </ul>
         </div>
       </div>
@@ -39,7 +39,7 @@ const Footer = () => {
 
       {/* Copyright */}
       <p className="py-5 text-sm text-center text-gray-500">
-        &copy; 2024 foreveryou.com - All Rights Reserved.
+        &copy; 2025 fashion_x.com - All Rights Reserved.
       </p>
     </footer>
   );
