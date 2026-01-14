@@ -6,6 +6,8 @@ import { uploadMultipleToCloudinary } from '../../config/cloudinary';
 
 const AdminProducts = () => {
   const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(true);
   const [uploading, setUploading] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -30,11 +32,28 @@ const AdminProducts = () => {
     fetchProducts();
   }, []);
 
+  // Filter products based on search query
+  useEffect(() => {
+    if (searchQuery.trim() === '') {
+      setFilteredProducts(products);
+    } else {
+      const query = searchQuery.toLowerCase();
+      const filtered = products.filter(product =>
+        product.name.toLowerCase().includes(query) ||
+        product.description.toLowerCase().includes(query) ||
+        product.category.toLowerCase().includes(query) ||
+        product.subCategory.toLowerCase().includes(query)
+      );
+      setFilteredProducts(filtered);
+    }
+  }, [searchQuery, products]);
+
   const fetchProducts = async () => {
     try {
       const response = await api.get('/api/product/list');
       if (response.data.success) {
         setProducts(response.data.products);
+        setFilteredProducts(response.data.products);
       }
     } catch (error) {
       toast.error('Failed to fetch products');
@@ -245,33 +264,83 @@ const AdminProducts = () => {
           </button>
         </div>
 
+        {/* Search Bar */}
+        <div className="mb-6">
+          <div className="relative">
+            <input
+              type="text"
+              placeholder="Search products by name, description, category..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
+            />
+            <svg
+              className="absolute left-3 top-3.5 h-5 w-5 text-gray-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
+            </svg>
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery('')}
+                className="absolute right-3 top-3 text-gray-400 hover:text-gray-600"
+              >
+                <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            )}
+          </div>
+          {searchQuery && (
+            <p className="text-sm text-gray-600 mt-2">
+              Found {filteredProducts.length} product{filteredProducts.length !== 1 ? 's' : ''}
+            </p>
+          )}
+          {!searchQuery && products.length > 0 && (
+            <p className="text-sm text-gray-600 mt-2">
+              Total: {products.length} product{products.length !== 1 ? 's' : ''}
+            </p>
+          )}
+        </div>
+
         {/* Products Grid */}
         <div className="bg-white rounded-lg shadow overflow-hidden">
-          {products.length === 0 ? (
+          {filteredProducts.length === 0 ? (
             <div className="text-center py-12">
-              <p className="text-gray-500 text-lg">No products found</p>
-              <button
-                onClick={() => setShowModal(true)}
-                className="mt-4 text-blue-600 hover:text-blue-800"
-              >
-                Add your first product
-              </button>
+              <p className="text-gray-500 text-lg">
+                {searchQuery ? 'No products found matching your search' : 'No products found'}
+              </p>
+              {!searchQuery && (
+                <button
+                  onClick={() => setShowModal(true)}
+                  className="mt-4 text-blue-600 hover:text-blue-800"
+                >
+                  Add your first product
+                </button>
+              )}
             </div>
           ) : (
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto max-h-[calc(100vh-400px)] overflow-y-auto">
               <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
+                <thead className="bg-gray-50 sticky top-0 z-10">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sizes</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Bestseller</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50">Product</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50">Category</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50">Price</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50">Sizes</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50">Bestseller</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                  {products.map((product) => (
+                  {filteredProducts.map((product) => (
                     <tr key={product._id} className="hover:bg-gray-50">
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">

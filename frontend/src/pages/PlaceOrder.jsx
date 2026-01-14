@@ -106,7 +106,7 @@ const PlaceOrder = () => {
   };
 
   return (
-    <div className='flex flex-col sm:flex-row justify-between gap-4 pt-5 sm:pt-14 min-h-[80vh] border-t'>
+    <div className='px-4 sm:px-[5vw] md:px-[7vh] lg:px-[9vh] flex flex-col sm:flex-row justify-between gap-4 pt-5 sm:pt-14 min-h-[80vh] border-t'>
       
       {/* ------------- Left Side: Delivery Information ------------- */}
       <div className='flex flex-col gap-4 w-full sm:max-w-[480px]'>

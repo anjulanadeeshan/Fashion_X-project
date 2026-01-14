@@ -42,14 +42,14 @@ const Orders = () => {
 
   if (loading) {
     return (
-      <div className='border-t pt-16 min-h-[60vh] flex items-center justify-center'>
+      <div className='px-4 sm:px-[5vw] md:px-[7vh] lg:px-[9vh] border-t pt-16 min-h-[60vh] flex items-center justify-center'>
         <p className='text-xl text-gray-600'>Loading your orders...</p>
       </div>
     );
   }
 
   return (
-    <div className='border-t pt-16'>
+    <div className='px-4 sm:px-[5vw] md:px-[7vh] lg:px-[9vh] border-t pt-16'>
 
         <div className='text-2xl'>
             <div className='inline-flex items-center gap-2 mb-3'>

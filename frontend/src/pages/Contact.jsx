@@ -5,10 +5,10 @@ import { assets } from '../assets/frontend_assets/assets'
 
 const Contact = () => {
   return (
-    <div>
+    <div className="px-4 sm:px-[5vw] md:px-[7vh] lg:px-[9vh]">
 
       {/* ----------------- Title Section ----------------- */}
-      <div className='text-center text-2xl pt-10 border-t'>
+      <div className='text-center text-2xl pt-10 border-t mt-[100px]'>
           <div className='inline-flex items-center gap-2 mb-3'>
               <p className='text-gray-500'>CONTACT <span className='text-gray-700 font-medium'>US</span></p>
               <p className='w-8 sm:w-12 h-px sm:h-0.5 bg-gray-700'></p>

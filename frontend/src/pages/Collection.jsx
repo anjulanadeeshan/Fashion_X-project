@@ -84,7 +84,8 @@ const Collection = () => {
   }, [sortType])
 
   return (
-    <div className="flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t">
+    <div className="px-4 sm:px-[5vw] md:px-[7vh] lg:px-[9vh]">
+      <div className="flex flex-col sm:flex-row gap-1 sm:gap-10 pt-32 border-t">
       {/* LEFT FILTER SECTION */}
       <div className="min-w-60">
         {/* Filter dropdown */}
@@ -187,8 +188,10 @@ const Collection = () => {
 
       {/* RIGHT PRODUCT GRID */}
       <div className="flex-1">
-        <div className="flex justify-between text-base sm:text-2xl mb-4">
-          <Title text1="ALL" text2=" COLLECTION" />
+        <div className="flex flex-col sm:flex-row justify-between text-base sm:text-2xl mb-4 items-center gap-4">
+          <div className="w-full sm:w-auto flex justify-center sm:justify-start">
+            <Title text1="ALL" text2=" COLLECTION" />
+          </div>
 
           {/* Sort Dropdown (optional) */}
           <select className="border-2 border-gray-300 text-sm p-2" onChange={(e)=>setSortType(e.target.value)}>
@@ -209,6 +212,7 @@ const Collection = () => {
               price={item.price}
             />
           ))}
+        </div>
         </div>
       </div>
     </div>

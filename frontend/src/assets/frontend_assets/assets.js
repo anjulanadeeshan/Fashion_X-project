@@ -56,7 +56,7 @@ import p_img52 from './p_img52.png'
 
 
 import logo from './logo.png'
-import hero_img from './portrait-smiling-beautiful-girl-her-handsome-boyfriend-laughing-happy-cheerful-couple-sunglasses.jpg'
+import hero_img from './Brand_New_Arrival.png'
 import cart_icon from './cart_icon.png'
 import bin_icon from './bin_icon.png'
 import dropdown_icon from './dropdown_icon.png'

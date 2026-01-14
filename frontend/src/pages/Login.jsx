@@ -82,7 +82,8 @@ const Login = () => {
   }
 
   return (
-    <form onSubmit={onSubmitHandler} className='flex flex-col items-center w-[90%] sm:max-w-96 m-auto mt-14 gap-4 text-gray-800'>
+    <div className="px-4 sm:px-[5vw] md:px-[7vh] lg:px-[9vh]">
+      <form onSubmit={onSubmitHandler} className='flex flex-col items-center w-[90%] sm:max-w-96 m-auto mt-14 gap-4 text-gray-800'>
         
         {/* Title Section */}
         <div className='inline-flex items-center gap-2 mb-2 mt-10'>
@@ -167,7 +168,8 @@ const Login = () => {
             {loading ? 'Please wait...' : (isAdminLogin ? 'Admin Sign In' : (currentState === 'Login' ? 'Sign In' : 'Sign Up'))}
         </button>
 
-    </form>
+      </form>
+    </div>
   )
 }
 

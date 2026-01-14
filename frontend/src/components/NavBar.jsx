@@ -14,7 +14,7 @@ const NavBar = () => {
   }, []);
 
   return (
-    <div className="flex items-center justify-between py-5 font-medium">
+    <div className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between py-5 px-4 sm:px-[5vw] md:px-[7vh] lg:px-[9vh] font-medium bg-white/80 backdrop-blur-sm">
       <Link to='/'>
         <img src={assets.newlogo} className="w-36" alt="" />
       </Link>

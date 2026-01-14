@@ -28,7 +28,7 @@ const App = () => {
   const isAdminRoute = location.pathname.startsWith('/admin');
 
   return (
-    <div className={isAdminRoute ? '' : 'px-4 sm:px-[5vw] md:px-[7vh] lg:px-[9vh]'}>
+    <div className={isAdminRoute ? '' : ''}>
       <ToastContainer />
       {!isAdminRoute && <NavBar />}
       {!isAdminRoute && <SearchBar />}

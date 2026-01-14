@@ -29,7 +29,7 @@ const Cart = () => {
   }, [cartItems, products])
 
   return (
-    <div className='border-t pt-14'>
+    <div className='px-4 sm:px-[5vw] md:px-[7vh] lg:px-[9vh] border-t pt-14'>
 
       <div className='text-2xl mb-3'>
         <div className='inline-flex items-center gap-2 mb-3'>
