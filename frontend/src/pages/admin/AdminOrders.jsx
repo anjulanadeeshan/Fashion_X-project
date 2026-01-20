@@ -16,16 +16,25 @@ const AdminOrders = () => {
   const fetchOrders = async () => {
     try {
       const response = await api.post('/api/order/list');
-      console.log('Orders response:', response.data); // Debug log
+      console.log('Orders response:', response.data);
       if (response.data.success) {
         setOrders(response.data.orders);
       } else {
+        if (response.data.message === 'jwt expired') {
+          toast.error('Session expired. Please login again.');
+          // Redirect will be handled by API interceptor
+          return;
+        }
         console.error('Failed to fetch orders:', response.data.message);
         toast.error(response.data.message || 'Failed to fetch orders');
       }
     } catch (error) {
       console.error('Error fetching orders:', error);
-      toast.error('Failed to fetch orders: ' + error.message);
+      if (error.response?.status === 401) {
+        toast.error('Session expired. Please login again.');
+      } else {
+        toast.error('Failed to fetch orders: ' + error.message);
+      }
     } finally {
       setLoading(false);
     }

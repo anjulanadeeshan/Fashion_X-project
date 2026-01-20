@@ -20,11 +20,20 @@ const AdminUsers = () => {
       if (response.data.success) {
         setUsers(response.data.users);
       } else {
+        if (response.data.message === 'jwt expired') {
+          toast.error('Session expired. Please login again.');
+          // Redirect will be handled by API interceptor
+          return;
+        }
         toast.error(response.data.message || 'Failed to fetch users');
       }
     } catch (error) {
       console.error('Error fetching users:', error);
-      toast.error('Failed to fetch users: ' + error.message);
+      if (error.response?.status === 401) {
+        toast.error('Session expired. Please login again.');
+      } else {
+        toast.error('Failed to fetch users: ' + error.message);
+      }
     } finally {
       setLoading(false);
     }

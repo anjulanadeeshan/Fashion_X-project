@@ -38,13 +38,40 @@ api.interceptors.request.use(
 
 // Handle response errors
 api.interceptors.response.use(
-    (response) => response,
+    (response) => {
+        // Check if response data indicates jwt expired
+        if (response.data && !response.data.success && response.data.message === 'jwt expired') {
+            // Check if it's an admin request
+            const adminEndpoints = ['/admin', '/product', '/order/list', '/order/status', '/order/payment-status', '/order/stats', '/user/list', '/user/stats'];
+            const isAdminRequest = adminEndpoints.some(endpoint => response.config.url?.includes(endpoint));
+            
+            if (isAdminRequest) {
+                localStorage.removeItem('adminToken');
+                localStorage.removeItem('adminUser');
+                window.location.href = '/admin/login';
+            } else {
+                localStorage.removeItem('token');
+                localStorage.removeItem('user');
+                window.location.href = '/login';
+            }
+        }
+        return response;
+    },
     (error) => {
         if (error.response?.status === 401) {
-            // Unauthorized - clear token and redirect to login
-            localStorage.removeItem('token');
-            localStorage.removeItem('user');
-            window.location.href = '/login';
+            // Check if it's an admin request
+            const adminEndpoints = ['/admin', '/product', '/order/list', '/order/status', '/order/payment-status', '/order/stats', '/user/list', '/user/stats'];
+            const isAdminRequest = adminEndpoints.some(endpoint => error.config?.url?.includes(endpoint));
+            
+            if (isAdminRequest) {
+                localStorage.removeItem('adminToken');
+                localStorage.removeItem('adminUser');
+                window.location.href = '/admin/login';
+            } else {
+                localStorage.removeItem('token');
+                localStorage.removeItem('user');
+                window.location.href = '/login';
+            }
         }
         return Promise.reject(error);
     }
