@@ -74,6 +74,8 @@ import razorpay_logo from './razorpay_logo.png'
 import stripe_logo from './stripe_logo.png'
 import cross_icon from './cross_icon.png'
 import newlogo from './newlogo.png'
+import charming_lady from './charming-lady-fashionable-blouse-trousers-takes-notes-tablet-girl-posing-background-dresses.jpg'
+import couple_img from './portrait-smiling-beautiful-girl-her-handsome-boyfriend-laughing-happy-cheerful-couple-sunglasses.jpg'
 
 export const assets = {
     logo,
@@ -94,7 +96,9 @@ export const assets = {
     razorpay_logo,
     stripe_logo,
     cross_icon,
-    newlogo
+    newlogo,
+    charming_lady,
+    couple_img
 }
 
 export const products = [
