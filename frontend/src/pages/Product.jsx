@@ -26,7 +26,7 @@ const Product = () => {
   }, [productId, products]);
 
   return productData ? (
-    <div className="px-4 sm:px-[5vw] md:px-[7vh] lg:px-[9vh] border-t-2 pt-10 transition-opacity ease-in duration-500 opacity-100">
+    <div className="px-4 sm:px-[5vw] md:px-[7vh] lg:px-[9vh] border-t-2 pt-10 mt-24 transition-opacity ease-in duration-500 opacity-100">
       {/*----------- Product Data -----------------*/}
       <div className="flex gap-12 sm:gap-12 flex-col sm:flex-row">
         {/*---------- Product Images (Left Side) ----------*/}
