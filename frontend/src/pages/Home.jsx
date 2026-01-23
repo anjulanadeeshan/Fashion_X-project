@@ -12,7 +12,8 @@ const Home = () => {
       <div className='px-4 sm:px-[5vw] md:px-[7vh] lg:px-[9vh]'>
         <LatestCollection/>
         <BestSeller/>
-        
+        <OurPolicy/>
+        <NewsLetter/>
       </div>
     </div>
   )
